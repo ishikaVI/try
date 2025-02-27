@@ -1,0 +1,17 @@
+.type1{
+    font-size: 15px;
+    font-weight: bold;
+    vertical-align: top;
+    margin-top: 0px;
+}
+.type2{
+    font-size: 15px;
+    color: grey;
+    vertical-align: top;
+margin-top: 5px;
+}
+.type3{
+    font-size: 15px;
+    color: rgb(103, 103, 103);
+    vertical-align: top;
+}
