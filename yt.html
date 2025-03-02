@@ -1,79 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles/general.css">
-    <link rel="stylesheet" href="styles/header.css">
-    <link rel="stylesheet" href="styles/video.css">
+    <title>YouTube - Homepage</title>
+    <linK rel="stylesheet" href="sidebar.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+           padding: 0%;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Container outer layout */
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #212121;
+            padding: 10px 20px;
+        }
+
+        .header_left,
+        .header_center,
+        .header_right {
+            display: flex;
+            align-items: center;
+        }
+
+        .header_left {
+            flex: 1;
+        }
+
+        .youtube_logo img {
+            height: 30px;
+            margin-left: 10px;
+        }
+
+        .hamburger img {
+            height: 24px;
+            margin-right: 20px;
+        }
+
+        .header_center {
+            flex: 2;
+            justify-content: center;
+        }
+
+        .search_container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .search_input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 2px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            margin-right: 8px;
+        }
+
+        .search_button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search_button img {
+            width: 20px;
+        }
+
+        .header_right {
+            justify-content: flex-end;
+        }
+
+        .icon_button {
+            background: transparent;
+            border: none;
+            margin-left: 15px;
+            cursor: pointer;
+        }
+
+        .icon_button img {
+            height: 24px;
+        }
+
+        /* Main Content Section */
+        main {
+            flex: 1;
+            padding: 20px;
+            background-color: #f9f9f9;
+            overflow-y: auto;
+        }
+
+        .video_grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 0 10px;
+        }
+
+        .video_card {
+            background-color: #fff;
+        }
+
+            /* General Styles */
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding-top: 80px;
+                background-color: #f9f9f9;
+                padding-left: 180px;
+            }
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                margin-left: 80px;
+            }
+
+            /* Header Section */
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #ffffff;
+                padding: 10px 20px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                position: fixed;
+                width: 100%;
+                top: 0;
+                left: 0;
+                border-bottom-color: #606060;
+                border-bottom-width: 30px;
+            }
+
+            .header_left,
+            .header_center,
+            .header_right {
+                display: flex;
+                align-items: center;
+            }
+
+            .hamburger img,
+            .youtube_logo img {
+                height: 30px;
+                cursor: pointer;
+            }
+
+            .search_container {
+                display: flex;
+                border: 1px solid #ccc;
+                border-radius: 20px;
+                overflow: hidden;
+                background: white;
+            }
+
+            .search_input {
+                border: gray;
+                padding: 8px 12px;
+                outline: none;
+                width: 300px;
+            }
+
+            .search_button {
+                border: gray;
+                background-color: #7d7a7a;
+                padding: 8px;
+                cursor: pointer;
+            }
+
+            .search_button:hover {
+                transform: 0.8s;
+            }
+
+            .search_button:active {
+                transform: 0.6s;
+            }
+
+            .icon_button {
+                background: none;
+                border: none;
+                margin-left: 15px;
+                cursor: pointer;
+            }
+
+            .icon_button img {
+                height: 24px;
+            }
+
+            /* Main Content */
+            main {
+                padding: 80px 20px 20px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .video_grid {
+                display: grid;
+                gap: 20px;
+                max-width: 1200px;
+                width: 100%;
+                margin: 10px;
+            }
+
+            .video_card {
+                background: white;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                transition: transform 0.2s;
+                cursor: pointer;
+                
+            }
+
+            .video_card:hover {
+                transform: scale(1.05);
+            }
+
+            .video_thumbnail {
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+            }
+
+            .video_info {
+                display: flex;
+                padding: 40px;
+                width: auto;
+            }
+
+            .profile_img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+
+            .video_details {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .video_title {
+                font-size: 16px;
+                font-weight: bold;
+                margin: 0;
+            }
+
+            .channel_name,
+            .video_stats {
+                font-size: 14px;
+                color: #606060;
+                margin: 2px 0;
+            }
+
+            /* Footer Section */
+            footer {
+                text-align: center;
+                padding: 10px;
+                background-color: #ffffff;
+                box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+                margin-top: 20px;
+            }
+    </style>
 </head>
-<body style="margin: 0px;">
-    <div class=" header">
-        <div class="left-header">
-            <div >
-            <img class="logo1" src="c:\Users\DELL-PC\Downloads\Hamburger_icon.svg.png" width="30px" height="30px"> 
+
+<body style=" padding-left: 10px;">
+    <div class="container">
+        <!-- Header Section -->
+        <header style=" background-color: #ffffff;">
+            <div class="header_left">
+                <div class="hamburger">
+                    <img src="c:\Users\DELL-PC\Downloads\Hamburger_icon.svg.png" alt="Hamburger Menu">
+                </div>
+                <div class="youtube_logo">
+                    <img src="c:\Users\DELL-PC\Downloads\youtubeicon.png" alt="YouTube Logo">
+                </div>
             </div>
-            <div >
-                <img class="logo2" src="c:\Users\DELL-PC\Downloads\3146788_youtube_logo_icon.png" width="45px" height="50px">
-        </div>
+            <div class="header_center">
+                <div class="search_container">
+                    <input type="text" class="search_input" placeholder="Search">
+                    <button class="search_button">
+                        <img src="c:\Users\DELL-PC\Downloads\searchicon.png">
+                    </button>
+                </div>
             </div>
-        <div class="search">
-<input class="need" type="text" placeholder="Search">
-</div>
-<div class="right-header">right-section</div>
-    </div>
-    <div class="photo1">
-        <div>
-          <img class="view1" height="180" src="c:\Users\DELL-PC\Downloads\pic1.jpg" width="320">
-        </div>
-        <div class="profile-picture">
-            <img class="img" src="c:\Users\DELL-PC\Downloads\pic1.jpg" width="100px" height="100px" border-radius="50%">
-            <div class="profile-details">
-                <p class="type1"> Talking Tech and AI with Google CEO Sundar Pichai!</p>
-                <p class="type2"> Marques Brownlee  </p>
-                <p class="type3">3.4M views • 6 months ago </p>
+            <div class="header_right">
+                <button class="icon_button">
+                    <img src="c:\Users\DELL-PC\Downloads\videoicon.png" alt="Create Video">
+                </button>
+                <button class="icon_button">
+                    <img src="c:\Users\DELL-PC\Downloads\notification.png" alt="Notifications">
+                </button>
+                <button class="icon_button">
+                    <img src="c:\Users\DELL-PC\Downloads\ishikaicon.jpg" alt="Profile" style="border-radius: 50%;">
+                </button>
+            </div>
+        </header>
+        <!-- side bar -->
+        <div class="sidebar">
+            <div class="sidebar-item">
+                <img  class="home" src="c:\Users\DELL-PC\Downloads\house.png">
+                <span>Home</span>
+            </div>
+            <div class="sidebar-item">
+           <img class="home" src="c:\Users\DELL-PC\Downloads\subcription.png">
+                <span>subcription</span>
+            </div>
+            <div class="sidebar-item">
+                <img class="home" src="c:\Users\DELL-PC\Downloads\shorts.png">
+                <span>shorts</span>
+            </div>
+            <div class="sidebar-item">
+               <img class="home" src="c:\Users\DELL-PC\Downloads\profile.png">
+                <span>you</span>
             </div>
         </div>
-</div>
-<div class="photo1">
-    <div >
-        <img class="view1" height="180" src="c:\Users\DELL-PC\Downloads\pic 2.jpg" width="320">
+        <!-- Main Content Section -->
+        <main>
+            <div class="video_grid">
+                <!-- Video 1 -->
+                <div class="video_card">
+                    <img class="video_thumbnail" src="c:\Users\DELL-PC\Downloads\pic1.jpg">
+                    <div class="video_info">
+                        <img class="profile_img" src="c:\Users\DELL-PC\Downloads\naturepicture.jpg">
+                        <div class="video_details">
+                            <h4 class="video_title">Painting Tutorial</h4>
+                            <p class="channel_name">Surbhi Kalke</p>
+                            <p class="video_stats">2.4M views . 10 years ago</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="video_card">
+                    <img class="video_thumbnail" src="c:\Users\DELL-PC\Downloads\pic 2.jpg">
+                    <div class="video_info">
+                        <img class="profile_img" src="c:\Users\DELL-PC\Downloads\naturepicture.jpg">
+                        <div class="video_details">
+                            <h4 class="video_title">Learn Content Writing</h4>
+                            <p class="channel_name">Nidhi Yadav</p>
+                            <p class="video_stats">5.7M views . 4 years ago</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="video_card">
+                    <img class="video_thumbnail" src="c:\Users\DELL-PC\Downloads\pic3.jpg">
+                    <div class="video_info">
+                        <img class="profile_img" src="c:\Users\DELL-PC\Downloads\naturepicture.jpg">
+                        <div class="video_details">
+                            <h4 class="video_title">Eye Art</h4>
+                            <p class="channel_name">Siddhi Yadav</p>
+                            <p class="video_stats">5.9M views . 8 years ago</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video 4 -->
+                <div class="video_card">
+                    <img class="video_thumbnail" src="c:\Users\DELL-PC\Downloads\pic4.jpg">
+                    <div class="video_info">
+                        <img class="profile_img" src="c:\Users\DELL-PC\Downloads\naturepicture.jpg">
+                        <div class="video_details">
+                            <h4 class="video_title">Love Animals</h4>
+                            <p class="channel_name">Disha Patil</p>
+                            <p class="video_stats">3.4M views . 6 years ago</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Videos Here -->
+                <!-- Video 5 -->
+                <div class="video_card">
+                    <img class="video_thumbnail" src="c:\Users\DELL-PC\Downloads\pic1.jpg">
+                    <div class="video_info">
+                        <img class="profile_img" src="c:\Users\DELL-PC\Downloads\naturepicture.jpg">
+                        <div class="video_details">
+                            <h4 class="video_title">Content Writing Part 2</h4>
+                            <p class="channel_name">Nidhi Yadav</p>
+                            <p class="video_stats">5.9M views . 2 years ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Section -->
+        <footer>
+            <p>&copy; 2025 YouTube, LLC</p>
+        </footer>
     </div>
-    <div class="profile-picture">
-        <img class="img" src="c:\Users\DELL-PC\Downloads\pic 2.jpg" width="100px" height="100px" border-radius="60px">
-    <div class="profile-details">
-         <p class="type1"> Talking about art and culture</p>
-        <p class="type2"> Markiplier </p>
-        <p class="type3">19M views • 4 years ago </p>
-       </div>
-    </div>
-</div>
-<div class="photo1">
-    <div>
-    <img class="view1" height="180" src="c:\Users\DELL-PC\Downloads\pic3.jpg" width="320">
-    </div>
-    <div class="profile-picture"> 
-        <img class="img" src="c:\Users\DELL-PC\Downloads\pic3.jpg" width="100px" height="100px" border-radius="60px">
-        <div class="profile-details">
-            <p class="type1"> want to draw a painting ??</p>
-            <p class="type2"> Art work</p>
-            <p class="type3">29M views • 4 years ago </p>
-        </div>
-    </div>
-</div>
-<div class="photo1">
-    <div>
-    <img class="view1" height="180" src="c:\Users\DELL-PC\Downloads\pic4.jpg" width="320">
-    </div>
-    <div class="profile-picture">
-        <img class="img" src="c:\Users\DELL-PC\Downloads\pic4.jpg" width="100px" height="100px" border-radius="60px">
-        <div class="profile-details">
-    <p class="type1"> love animals ?? then have a look...</p>
-    <p class="type2"> Nature life</p>
-    <p class="type3">108M views • 6 years ago </p>
-    </div>
-    </div>
-</div>
 </body>
+
 </html>
